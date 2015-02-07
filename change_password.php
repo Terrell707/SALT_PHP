@@ -1,15 +1,6 @@
 <? // Allows user to change their password.
-include_once("define_vars.php");  // Contains constants that are used throughout.
-require("database.php");          // Returns the $mysqli object.
-
-// Grabs the user's current session.
-session_start();
-
-// Checks to make sure we have an open mysql connection and that the user is logged in.
-if (!isset($_SESSION['user']) || !isset($_SESSION['logged_in'])) {
-  echo constant("NOT_LOGGED_IN");
-  die ("User not logged in!");
-}
+require("utils/required.php")
+require("user_status.php");       // Checks to see if user is still logged in.
 
 // Grabs the old and new user password.
 $user = $_SESSION['user'];
@@ -18,16 +9,16 @@ $newPassword = $_GET['newPassword'];
 
 // Checks to make sure the session user is the current user.
 if ($_SESSION['user'] != $user) {
-  echo constant("NOT_LOGGED_IN");
-  die ("User not logged in!");
+  $error = error(constant("NOT_LOGGED_IN"), "User not logged in!");
+  die ($error);
 }
 
 // Query the database.
 $passwordQuery = "SELECT password FROM user WHERE username = '$user' LIMIT 1";
 $userInfo = $mysqli->query($passwordQuery);
 if (!$userInfo) {
-  echo constant("INVALID_USER");
-  die ("Invalid Username");
+  $error = error(constant("INVALID_USER"), "Invalid Username");
+  die ($error);
 }
 
 // Stores the result and closes the result set.
@@ -37,20 +28,21 @@ $userInfo->close();
 // Checks if the password is correct.
 if (!password_verify($password, $hashedPassword)) {
   // If password is wrong, terminate the script.
-  echo constant("INCORRECT_PASSWORD");
-  die ("Incorrect Password!");
-} else {
-  // Otherwise, write the new password to the database.
-  $newPassword = password_hash($newPassword, PASSWORD_BCRYPT);
-  $passwordQuery = "UPDATE user SET password = '$newPassword' WHERE username = '$user'";
-  $mysqli->query($passwordQuery);
-  // If the query failed,
-  if ($mysqli->affected_rows != 1) {
-    echo constant("QUERY_FAILED");
-    die ("Update query failed!");
-  }
-
-  echo constant("SUCCESS");
+  $error= error(constant("INCORRECT_PASSWORD"), "Incorrect Password");
+  die ($error);
 }
 
+// Otherwise, write the new password to the database.
+$newPassword = password_hash($newPassword, PASSWORD_BCRYPT);
+$passwordQuery = "UPDATE user SET password = '$newPassword' WHERE username = '$user'";
+$mysqli->query($passwordQuery);
+// If the query failed,
+if ($mysqli->affected_rows != 1) {
+  $error = error(constant("QUERY_FAILED"), "Update query failed: " . $mysqli->error);
+  die ($error);
+}
+
+// Return a success json object.
+$json = error(constant("SUCCESS"), "Change Password was successful");
+echo $json;
 ?>
