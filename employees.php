@@ -1,6 +1,6 @@
 <? // Gets all the information from the employee table.
-require("utils/required.php");  // Contains the other required scripts.
-require("utils/user_status.php");     // Checks that the use is still logged in.
+require_once("utils/required.php");  // Contains the other required scripts.
+require_once("utils/user_status.php");     // Checks that the use is still logged in.
 
 $employeeQuery = "SELECT * FROM employee";
 $results = $mysqli->query($employeeQuery);
@@ -34,7 +34,7 @@ while ($row = $results->fetch_object()) {
   $record['pay'] = $row->pay;
 
   // Adds this record to the list of records.
-  array_push($records, $record);
+ array_push($records, $record);
 }
 
 $json = json_encode($records);

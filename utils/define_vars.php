@@ -1,5 +1,4 @@
 <? // List of constants that are used to communicate script status.
-
 // Success and Error
 define("SUCCESS", 0);
 define("ERROR", 1);

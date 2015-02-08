@@ -1,6 +1,6 @@
 <? // Allows user to change their password.
-require("utils/required.php")
-require("user_status.php");       // Checks to see if user is still logged in.
+require_once("utils/required.php")
+require_once("user_status.php");       // Checks to see if user is still logged in.
 
 // Grabs the old and new user password.
 $user = $_SESSION['user'];
