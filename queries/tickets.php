@@ -1,6 +1,6 @@
 <? // Gets all the information from the ticket table.
-require_once("utils/required.php");  // Contains the other required scripts.
-require_once("utils/user_status.php");     // Checks that the use is still logged in.
+require_once("../utils/required.php");  // Contains the other required scripts.
+require_once("../utils/user_status.php");     // Checks that the use is still logged in.
 
 $dateFrom = $mysqli->real_escape_string($_GET['from']);
 $dateTo = $mysqli->real_escape_string($_GET['to']);

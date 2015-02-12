@@ -1,5 +1,5 @@
 <? // Used to allow a user to login into the MySQL Database
-require_once("utils/required.php");  // Contains the other required php scripts.
+require_once("../utils/required.php");  // Contains the other required php scripts.
 
 session_start();
 
