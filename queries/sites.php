@@ -21,7 +21,7 @@ while ($row = $results->fetch_object()) {
   // Grabs each column from the current row and places it in the record array under the
   //  correct key.
   $record['office_code'] = $row->office_code;
-  $record['name'] = $row->emp_name;
+  $record['name'] = $row->name;
   $record['address'] = $row->address;
   $record['phone_number'] = $row->phone_number;
   $record['email'] = $row->email;
