@@ -32,6 +32,7 @@ while ($row = $results->fetch_object()) {
   $record['state'] = $row->state;
   $record['zip'] = $row->zip;
   $record['pay'] = $row->pay;
+  $record['active'] = $row->active;
 
   // Adds this record to the list of records.
  array_push($records, $record);

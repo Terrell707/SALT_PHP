@@ -25,6 +25,9 @@ while ($row = $results->fetch_object()) {
   $record['address'] = $row->address;
   $record['phone_number'] = $row->phone_number;
   $record['email'] = $row->email;
+  $record['can'] = $row->can;
+  $record['pay'] = $row->pay;
+  $record['active'] = $row->active;
 
   // Adds this record to the list of records.
   array_push($records, $record);

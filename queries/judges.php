@@ -24,6 +24,7 @@ while ($row = $results->fetch_object()) {
   $record['office'] = $row->office;
   $record['first_name'] = $row->first_name;
   $record['last_name'] = $row->last_name;
+  $record['active'] = $row->active;
 
   // Adds this record to the list of records.
   array_push($records, $record);
