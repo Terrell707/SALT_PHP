@@ -11,7 +11,18 @@ CREATE TABLE employee (
   state CHAR(10),
   zip CHAR(5),
   pay INT(8),
+  active BOOLEAN,
   PRIMARY KEY (id, emp_id)
+) Engine = InnoDB;
+
+CREATE TABLE business (
+  name VARCHAR(35),
+  tin CHAR(11),
+  soc CHAR(4),
+  bpa_no CHAR(13),
+  duns_no INT(9),
+  contractor_id INT(5),
+  CONSTRAINT contractor_fk FOREIGN KEY (contractor_id) REFERENCES employee (id)
 ) Engine = InnoDB;
 
 CREATE TABLE user (
@@ -28,6 +39,9 @@ CREATE TABLE site (
   address VARCHAR(75),
   phone_number CHAR(10),
   email VARCHAR(40),
+  can INT(7),
+  pay INT(3),
+  active BOOLEAN,
   PRIMARY KEY (office_code)
 ) Engine = InnoDB;
 
@@ -36,6 +50,7 @@ CREATE TABLE expert (
   first_name VARCHAR(20),
   last_name VARCHAR(20),
   role CHAR(3),
+  active BOOLEAN,
   PRIMARY KEY (expert_id)
 ) Engine = InnoDB;
 
@@ -44,6 +59,7 @@ CREATE TABLE judge (
   office CHAR(3) NOT NULL,
   first_name VARCHAR(20),
   last_name VARCHAR(20),
+  active BOOLEAN,
   PRIMARY KEY (judge_id),
   CONSTRAINT office_pk FOREIGN KEY (office) REFERENCES site (office_code) ON UPDATE CASCADE ON DELETE CASCADE
 ) Engine = InnoDB;
@@ -72,9 +88,6 @@ CREATE TABLE ticket (
   call_order_no CHAR(15),
   first_name VARCHAR(20),
   last_name VARCHAR(20),
-  bpa_no CHAR(13),
-  can INT(7),
-  tin CHAR(11),
   soc CHAR(4),
   hearing_date DATE,
   hearing_time TIME,
