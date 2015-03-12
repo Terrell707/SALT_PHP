@@ -2,12 +2,13 @@
 require_once("../utils/required.php");    // Contains the other required scripts.
 require_once("../utils/user_status.php"); // Checks that the use is still logged in.
 
-$insertQuery = "INSERT INTO ticket VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?)";
+$insertQuery = "INSERT INTO ticket VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?)";
 
 $ticket_no = $mysqli->real_escape_string($_GET['ticket_no']);
 $order_date = $mysqli->real_escape_string($_GET['order_date']);
 $call_order_no = $mysqli->real_escape_string($_GET['call_order_no']);
 $first_name = $mysqli->real_escape_string($_GET['first_name']);
+$soc = $mysqli->real_escape_string($_GET['soc']);
 $last_name = $mysqli->real_escape_string($_GET['last_name']);
 $hearing_date = $mysqli->real_escape_string($_GET['hearing_date']);
 $hearing_time = $mysqli->real_escape_string($_GET['hearing_time']);
@@ -20,8 +21,8 @@ $at_site = $mysqli->real_escape_string($_GET['at_site']);
 $insertStmt = $mysqli->stmt_init();
 if ($insertStmt->prepare($insertQuery)) {
   // Bind each of the values to the query and then execute it.
-  $insertStmt->bind_param('isssssssiis', $ticket_no, $order_date, $call_order_no,
-    $first_name, $last_name, $hearing_date, $hearing_time, $status, $emp_worked,
+  $insertStmt->bind_param('issssssssiis', $ticket_no, $order_date, $call_order_no,
+    $first_name, $last_name, $soc, $hearing_date, $hearing_time, $status, $emp_worked,
     $judge_presided, $at_site);
   $insertStmt->execute();
 
