@@ -33,6 +33,6 @@ while ($row = $results->fetch_object()) {
   array_push($records, $record);
 }
 
-$json = json_encode($records);
+$json = success($records, constant("SUCCESS"), "Site query successful!");
 echo $json;
 ?>

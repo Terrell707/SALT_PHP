@@ -33,6 +33,7 @@ if (!password_verify($password, $hashPassword)) {
 $_SESSION['user'] = $user;
 $_SESSION['last_interacted'] = time();
 
-$json = error(constant("SUCCESS"), "Successfully logged in.");
+$json = success(array(), constant("SUCCESS"), "Successfully logged in.");
+// $json = error(constant("SUCCESS"), "Successfully logged in.");
 echo $json;
 ?>
