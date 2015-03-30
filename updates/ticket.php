@@ -4,7 +4,7 @@ require_once("../utils/user_status.php"); // Checks that the user is still logge
 
 $updateQuery = "UPDATE ticket SET ticket_no = ?, order_date = ?, call_order_no = ?,
   first_name = ?, last_name = ?, soc = ?, hearing_date = ?, hearing_time = ?,
-  status = ?, emp_worked = ?, judge_presided = ?, at_site = ?
+  status = ?, full_pay = ?, emp_worked = ?, judge_presided = ?, at_site = ?
   WHERE ticket_no = ?";
 
 $ticket_no = $mysqli->real_escape_string($_GET['ticket_no']);
@@ -16,6 +16,7 @@ $last_name = $mysqli->real_escape_string($_GET['last_name']);
 $hearing_date = $mysqli->real_escape_string($_GET['hearing_date']);
 $hearing_time = $mysqli->real_escape_string($_GET['hearing_time']);
 $status = $mysqli->real_escape_string($_GET['status']);
+$full_pay = $mysqli->real_escape_string($_GET['full_pay']);
 $emp_worked = $mysqli->real_escape_string($_GET['emp_worked']);
 $judge_presided = $mysqli->real_escape_string($_GET['judge_presided']);
 $at_site = $mysqli->real_escape_string($_GET['at_site']);
@@ -27,9 +28,9 @@ $ref_ticket_no = $mysqli->real_escape_string($_GET['ref_ticket_no']);
 $updateStmt = $mysqli->stmt_init();
 if ($updateStmt->prepare($updateQuery)) {
   // Bind each of the values to the query and then execute it.
-  $updateStmt->bind_param('issssssssiiss', $ticket_no, $order_date, $call_order_no,
-    $first_name, $last_name, $soc, $hearing_date, $hearing_time, $status, $emp_worked,
-    $judge_presided, $at_site, $ref_ticket_no);
+  $updateStmt->bind_param('isssssssssiiss', $ticket_no, $order_date, $call_order_no,
+    $first_name, $last_name, $soc, $hearing_date, $hearing_time, $status, $full_pay,
+    $emp_worked, $judge_presided, $at_site, $ref_ticket_no);
   $updateStmt->execute();
 
   // Grab the number of rows that we inserted.

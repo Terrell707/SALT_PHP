@@ -1,6 +1,6 @@
 <? // Gets all the information from the ticket table.
-require_once("../utils/required.php");  // Contains the other required scripts.
-require_once("../utils/user_status.php");     // Checks that the use is still logged in.
+require_once("../utils/required.php");    // Contains the other required scripts.
+require_once("../utils/user_status.php"); // Checks that the user is still logged in.
 
 $dateFrom = $mysqli->real_escape_string($_GET['from']);
 $dateTo = $mysqli->real_escape_string($_GET['to']);
@@ -57,6 +57,7 @@ while ($row = $results->fetch_object()) {
   $record['hearing_date'] = $row->hearing_date;
   $record['hearing_time'] = $row->hearing_time;
   $record['status'] = $row->status;
+  $record['full_pay'] = $row->full_pay;
   $record['emp_worked'] = $row->emp_worked;
   $record['judge_presided'] = $row->judge_presided;
   $record['at_site'] = $row->at_site;
