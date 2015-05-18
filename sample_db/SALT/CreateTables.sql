@@ -10,7 +10,7 @@ CREATE TABLE employee (
   city VARCHAR(15),
   state CHAR(10),
   zip CHAR(5),
-  pay INT(8),
+  pay DECIMAL(8,2),
   active BOOLEAN,
   PRIMARY KEY (id, emp_id)
 ) Engine = InnoDB;
@@ -40,7 +40,7 @@ CREATE TABLE site (
   phone_number CHAR(10),
   email VARCHAR(40),
   can INT(7),
-  pay INT(3),
+  pay DECIMAL(5,2),
   active BOOLEAN,
   PRIMARY KEY (office_code)
 ) Engine = InnoDB;
