@@ -5,7 +5,7 @@ VALUES
   (10003, 3, "Jordan", "A", "James", 7073425532, "jordanjames@gmail.com", "321 Martin Luther Drive", "San Francisco", "CA", 98910, 20, true),
   (10004, 4, "Jessica", "", "Lee", 7079431121, "jessicalee@yahoo.com", "1221 San Leandro Way", "Oakland", "CA", 91212, 30, true),
   (10005, 5, "Alama", "", "Sao", 7073440565, "alamasao@gmail.com", "527 Oakmeade Circle", "Vacaville", "CA", 94534, 60, true),
-  (10006, 6, "Some", "J", "Employee", 123456789, "fakeemail@gmail.com", "331 Loopy Drive.", "Vacaville", "CA", 94534, 5, false);
+  (10006, 6, "Some", "J", "Employee", 4082409910, "fakeemail@gmail.com", "331 Loopy Drive.", "Vacaville", "CA", 94534, 5, false);
 
 INSERT INTO business
 VALUES
